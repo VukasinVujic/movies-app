@@ -1,6 +1,8 @@
 <template>
   <div>
-    <movie-row :movies="movies"></movie-row>
+    <ul>
+      <li v-for="movie in movies" :key="movie.id">{{ movie.title }}</li>
+    </ul>
   </div>
 </template>
 
