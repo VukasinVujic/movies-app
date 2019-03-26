@@ -16,7 +16,11 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+      movies:Array
+  }
+};
 </script>
 
 <style>
