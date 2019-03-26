@@ -1,16 +1,16 @@
 <template>
   <div>
-    <movie-list :movies="movies"></movie-list>
+    <movie-row :movies="movies"></movie-row>
   </div>
 </template>
 
 <script>
-import MovieList from "../components/MovieList";
 import { movies } from "../services/MoviesService.js";
+import MovieRow from "../components/MovieRow";
 
 export default {
   components: {
-    MovieList
+    MovieRow
   },
   data() {
     return {
