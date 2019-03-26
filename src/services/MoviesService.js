@@ -4,8 +4,12 @@ export default class MoviesServices {
   constructor() {
     axios.defaults.baseURL = "http://localhost:3000/api/";
   }
-  getAll() {
-    return axios.get("movies");
+  getAll(term = "") {
+    return axios.get("movies", {
+      params: {
+        term
+      }
+    });
   }
 }
 
