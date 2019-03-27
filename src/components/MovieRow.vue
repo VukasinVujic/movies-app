@@ -1,26 +1,18 @@
 <template>
-  <div class="row">
-    <div v-text="movie.id"></div>
-    <div v-text="movie.title"></div>
-    <div v-text="movie.director"></div>
-    <div v-text="movie.genre"></div>
-    <div v-text="movie.relaseDate"></div>
-    <div v-text="movie.duration"></div>
-    <br>
-    <br>
-
-    <!-- <div class="card col-md-2" v-for="movie in movies" :key="movie.id"> -->
-    <!-- <div class="card-body">
-        <h5 class="card-title">Title {{ movie.title }}</h5>
-        <p class="card-text">Director: {{ movie.director }}</p>
-      </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">imageUrl: {{ movie.imageUrl }}</li>
-        <li class="list-group-item">duration: {{ movie.duration }}</li>
-        <li class="list-group-item">releaseDate: {{ movie.releaseDate }}</li>
-        <li class="list-group-item">genre: {{ movie.genre}}</li>
-    </ul>-->
-    <!-- </div> -->
+  <div class="row" :class="{'colorSelectedMovie' :selected}">
+    <div class="col-sm">Id: {{ movie.id }}</div>
+    <div class="col-sm">Title: {{ movie.title }}</div>
+    <div class="col-sm">Director: {{ movie.director }}</div>
+    <div class="col-sm">image: {{ movie.imageUrl }}</div>
+    <div class="col-sm">duration: {{ movie.duration }}</div>
+    <div class="col-sm">release date: {{ movie.releaseDate }}</div>
+    <div class="col-sm">genre: {{ movie.genre }}</div>
+    <div class="col-sm">
+    
+    <button type="submit" @click="OnSelect"> SElect </button>
+    
+    </div>
+   
   </div>
 </template>
 
@@ -31,9 +23,26 @@ export default {
       type: Object,
       required: true
     }
+  },
+  data(){
+    return {
+      selected: false
+    }
+  },
+  methods: {
+    OnSelect(){
+      this.selected = true;
+      this.$emit('SelectAMovie', this.movie)
+    }
   }
 };
 </script>
 
+
 <style>
+
+.colorSelectedMovie {
+  background: rgb(100,100,200)
+}
+
 </style>

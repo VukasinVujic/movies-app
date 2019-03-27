@@ -1,10 +1,13 @@
 <template>
   <div>
     <movie-search @filterMovie="searchTermMovie"></movie-search>
-    <ul>
-      <li v-for="movie in movies" :key="movie.id">{{ movie.title }}</li>
+    <div> Number of selected movies: {{numberOfSelecteMovies}} </div>
+    <ul v-for="movie in movies" :key="movie.id">
+      <li>
+        <movie-row :movie="movie" @SelectAMovie="selectedMovie" > </movie-row >
+      </li>
     </ul>
-    
+
     <div v-if="!movies.length">No movies BRE with such a title  </div>
       
   </div>
@@ -23,7 +26,8 @@ export default {
   data() {
     return {
       movies: [],
-      searchTerm: ''
+      searchTerm: '',
+      arraySelectedMovies: [],
     };
   },
   methods: {
@@ -31,10 +35,20 @@ export default {
       this.movies = this.movies.filter((movie) => {
         let formatedString = term.toLowerCase()
           return movie.title.toLowerCase().includes(formatedString);
-
       })
+    },
+    selectedMovie(movie){
+      if(this.arraySelectedMovies.indexOf(movie.id) > -1) {
+        return;
+      }
+      this.arraySelectedMovies.push(movie.id)
     }
-  
+  },
+
+  computed:{
+    numberOfSelecteMovies(){
+      return this.arraySelectedMovies.length;
+    }
   },
 
   beforeRouteEnter(to, from, next) {
