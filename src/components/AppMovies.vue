@@ -1,6 +1,6 @@
 <template>
   <div>
-    <movie-search @search-term-change="onSearchTermChange"></movie-search>
+    <movie-search @filterMovie="searchTermMovie"></movie-search>
     <ul>
       <li v-for="movie in movies" :key="movie.id">{{ movie.title }}</li>
     </ul>
@@ -19,15 +19,19 @@ export default {
   },
   data() {
     return {
-      movies: []
+      movies: [],
+      searchTerm: ''
     };
   },
   methods: {
-    onSearchTermChange(term) {
-      MoviesServices.getAll(term).then(({ data }) => {
-        this.movies = data;
-      });
+    searchTermMovie(term) {
+      this.movies = this.movies.filter((movie) => {
+        let formatedString = term.toLowerCase()
+          return movie.title.toLowerCase().includes(formatedString);
+
+      })
     }
+  
   },
 
   beforeRouteEnter(to, from, next) {

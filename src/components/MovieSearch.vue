@@ -2,11 +2,11 @@
   <div>
     <input
       class="form-control"
-      placeholder="Search"
-      v-model="search"
-      type="text"
-      @input="searchTermUpdated"
-    >
+      placeholder="find a movie"
+      v-model="searchTerm"
+      type="text">
+      <button @click="filteredMovies">filter</button>
+
   </div>
 </template>
 
@@ -14,9 +14,15 @@
 export default {
   name: "MoviSearch",
 
+  data(){
+    return {
+      searchTerm: ''
+    }
+  },
+
   methods: {
-    searchTermUpdated(term) {
-      this.$emit("search-term-change", term);
+    filteredMovies() {
+      this.$emit("filterMovie", this.searchTerm);
     }
   }
 };
