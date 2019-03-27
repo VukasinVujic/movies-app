@@ -4,6 +4,9 @@
     <ul>
       <li v-for="movie in movies" :key="movie.id">{{ movie.title }}</li>
     </ul>
+    
+    <div v-if="!movies.length">No movies BRE with such a title  </div>
+      
   </div>
 </template>
 

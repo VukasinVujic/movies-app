@@ -1,12 +1,7 @@
 <template>
   <div>
-    <input
-      class="form-control"
-      placeholder="find a movie"
-      v-model="searchTerm"
-      type="text">
-      <button @click="filteredMovies">filter</button>
-
+    <input class="form-control" placeholder="find a movie" v-model="searchTerm" type="text">
+    <button @click="filteredMovies">filter</button>
   </div>
 </template>
 
@@ -14,10 +9,10 @@
 export default {
   name: "MoviSearch",
 
-  data(){
+  data() {
     return {
-      searchTerm: ''
-    }
+      searchTerm: ""
+    };
   },
 
   methods: {
@@ -28,5 +23,3 @@ export default {
 };
 </script>
 
-<style>
-</style>
